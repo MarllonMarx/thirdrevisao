@@ -7,12 +7,16 @@ const database = require("./database")
 //Importar o body-parser
 const bodyParser = require('body-parser')
 
+//importar o cors
+const cors = require('cors')
+
 //Criar uma instância do express
 const app = express();
 
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
+app.use(cors())
 
 //Rotas ALUNO
 //GET
@@ -36,6 +40,7 @@ app.post('/aluno', (req, res) => {
     let nome = req.body.nome
     let telefone = req.body.telefone
     let status = req.body.status
+
 
     if (!nome ||!telefone ||!status) {
         return res.status(400).json({message: 'Todos os dados são obrigatórios'})
